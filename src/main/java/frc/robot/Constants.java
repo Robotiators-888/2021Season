@@ -12,4 +12,16 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+
+
+public final class Constants {
+    
+    // TELEOP
+    // CAN bus IDs for the motor controllers for the drive train 
+    public static final int MOTOR_FRONT_LEFT = 10;
+    public static final int MOTOR_FRONT_RIGHT = 12;
+    public static final int MOTOR_REAR_LEFT = 11;
+    public static final int MOTOR_REAR_RIGHT = 13;
+    // IDs for pneumatic controls
+    public static final double RAMP_RATE = 0.2;
+}

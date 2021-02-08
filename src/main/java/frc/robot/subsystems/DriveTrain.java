@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel;
@@ -11,17 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Interface for the drive train.
  */
 public class DriveTrain {
-
-    // CAN bus IDs for the motor controllers for the drive train
-    private static final int MOTOR_FRONT_LEFT = 10;
-    private static final int MOTOR_FRONT_RIGHT = 12;
-    private static final int MOTOR_REAR_LEFT = 11;
-    private static final int MOTOR_REAR_RIGHT = 13;
-
-    // IDs for pneumatic controls
-    public static final double RAMP_RATE = 0.2;
-
-    Navigation nav;
 
     // Motors
     CANSparkMax frontLeft;
@@ -43,10 +33,10 @@ public class DriveTrain {
     public DriveTrain() {
 
         // instantiate motor controllers with CAN ID and motor type
-        frontLeft = new CANSparkMax(MOTOR_FRONT_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        rearLeft = new CANSparkMax(MOTOR_REAR_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        frontRight = new CANSparkMax(MOTOR_FRONT_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
-        rearRight = new CANSparkMax(MOTOR_REAR_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        frontLeft = new CANSparkMax(Constants.MOTOR_FRONT_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rearLeft = new CANSparkMax(Constants.MOTOR_REAR_LEFT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        frontRight = new CANSparkMax(Constants.MOTOR_FRONT_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rearRight = new CANSparkMax(Constants.MOTOR_REAR_RIGHT, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         leftEncoder = frontLeft.getEncoder();
         rightEncoder = frontRight.getEncoder();
@@ -65,10 +55,10 @@ public class DriveTrain {
         frontRight.setIdleMode(IdleMode.kCoast);
         rearRight.setIdleMode(IdleMode.kCoast);
 
-        frontLeft.setClosedLoopRampRate(RAMP_RATE);
-        rearLeft.setClosedLoopRampRate(RAMP_RATE);
-        frontRight.setClosedLoopRampRate(RAMP_RATE);
-        rearRight.setClosedLoopRampRate(RAMP_RATE);
+        frontLeft.setClosedLoopRampRate(Constants.RAMP_RATE);
+        rearLeft.setClosedLoopRampRate(Constants.RAMP_RATE);
+        frontRight.setClosedLoopRampRate(Constants.RAMP_RATE);
+        rearRight.setClosedLoopRampRate(Constants.RAMP_RATE);
 
     }
 
