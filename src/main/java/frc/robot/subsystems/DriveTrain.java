@@ -6,6 +6,10 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -13,19 +17,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveTrain {
 
-    // Motors
-    CANSparkMax frontLeft;
-    CANSparkMax rearLeft;
-    CANSparkMax frontRight;
-    CANSparkMax rearRight;
+        // Motors
+        CANSparkMax frontLeft;
+        CANSparkMax rearLeft;
+        CANSparkMax frontRight;
+        CANSparkMax rearRight;
 
-    CANEncoder leftEncoder;
-    CANEncoder rightEncoder;
+        CANEncoder leftEncoder;
+        CANEncoder rightEncoder;
 
-    double rightEncoderOffset;
-    double leftEnccoderOffset;
+        double rightEncoderOffset;
+        double leftEnccoderOffset;
 
-    boolean brake = false;
+        boolean brake = false;
 
     /**
      * Constructor for a drive object.
@@ -59,55 +63,66 @@ public class DriveTrain {
         rearLeft.setClosedLoopRampRate(Constants.RAMP_RATE);
         frontRight.setClosedLoopRampRate(Constants.RAMP_RATE);
         rearRight.setClosedLoopRampRate(Constants.RAMP_RATE);
+       
+        Talon m_frontLeft = new Talon(1);
+        Talon m_rearLeft = new Talon(2);
+        SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
+     
+        Talon m_frontRight = new Talon(3);
+        Talon m_rearRight = new Talon(4);
+        SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_rearRight);
+     
+        DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+      
 
-    }
+        }
 
-    /**
+     /**
      * Sets the speed for the left and right side of the drive train.
      * 
      * @param leftThrust Left side output on a scale of -1.0 to 1.0.
      * @param rightThrust Right side output on a scale of -1.0 to 1.0.
      */
-    public void move(double leftThrust, double rightThrust) {
+        public void move(double leftThrust, double rightThrust) {
         frontLeft.set(leftThrust);
         frontRight.set(rightThrust);
         SmartDashboard.putNumber("Left output", leftThrust);
         SmartDashboard.putNumber("Right output", rightThrust);
-    }
+        }
 
-    /**
+     /**
      * Gets encoder values for the left and right SparkMAXs.
      */
-    public double[] getEncoders() {
+        public double[] getEncoders() {
         return new double[] {
                 -(frontLeft.getEncoder().getPosition() - leftEnccoderOffset),
                 -(frontRight.getEncoder().getPosition() - rightEncoderOffset) };
-    }
+        }
 
-    /**
+     /**
      * Resets the value of the encoder to zero.
      */
-    public void resetEncoderOffset() {
+     public void resetEncoderOffset() {
         leftEnccoderOffset = frontLeft.getEncoder().getPosition();
         rightEncoderOffset = frontRight.getEncoder().getPosition();
-    }
+        }
 
-    /**
+        /**
      * Set motors to brake mode.
      */
-    public void brake() {
+        public void brake() {
         if (frontLeft.getIdleMode() == IdleMode.kCoast) {
             frontLeft.setIdleMode(IdleMode.kBrake);
             rearLeft.setIdleMode(IdleMode.kBrake);
             frontRight.setIdleMode(IdleMode.kBrake);
             rearRight.setIdleMode(IdleMode.kBrake);
         }
-    }
+        }
 
-    /**
+        /**
      * Set motors to coast mode.
      */
-    public void coast() {
+        public void coast() {
         if (frontLeft.getIdleMode() == IdleMode.kBrake) {
             frontLeft.setIdleMode(IdleMode.kCoast);
             rearLeft.setIdleMode(IdleMode.kCoast);
