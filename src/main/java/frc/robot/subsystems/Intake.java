@@ -31,7 +31,7 @@ public class Intake {
 
     public void intakeTeleopPeriodic() {
         if (oi.getLeftStickButton(Constants.JOYSTICK_TRIGGER)) {
-            if (oi.getLeftStickButton(intakeMotor.JOYSTICK_LEFT_BUTTON, 4)){
+            if (oi.getLeftStickButton(Constants.JOYSTICK_LEFT_BUTTON)) {
                 intakeReverse();
             }
             else {

@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.OI;
 import edu.wpi.first.wpilibj.Joystick;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -94,4 +95,14 @@ import edu.wpi.first.wpilibj.Joystick;
         BUTTON_A, BUTTON_B, BUTTON_X, BUTTON_Y, BUTTON_NULL;
 
     }
+
+	public static double getRightSpeed() {
+		return 1;
+	}
+
+	public static double getLeftSpeed() {
+		return 1;
+	}
+
+
 }

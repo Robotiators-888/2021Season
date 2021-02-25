@@ -63,7 +63,9 @@ public class DriveTrain {
         rearLeft.setClosedLoopRampRate(Constants.RAMP_RATE);
         frontRight.setClosedLoopRampRate(Constants.RAMP_RATE);
         rearRight.setClosedLoopRampRate(Constants.RAMP_RATE);
-       
+        
+        
+        
         Talon m_frontLeft = new Talon(1);
         Talon m_rearLeft = new Talon(2);
         SpeedControllerGroup m_left = new SpeedControllerGroup(m_frontLeft, m_rearLeft);
@@ -72,7 +74,7 @@ public class DriveTrain {
         Talon m_rearRight = new Talon(4);
         SpeedControllerGroup m_right = new SpeedControllerGroup(m_frontRight, m_rearRight);
      
-        DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+        DifferentialDrive DifferentialDrive = new DifferentialDrive(m_left, m_right);
          
 
         }
@@ -130,4 +132,11 @@ public class DriveTrain {
             rearRight.setIdleMode(IdleMode.kCoast);
         }
     }
-}
+    public void initdefualtCommand(){
+       setDefualtCommand(new DriveTrain());
+    }
+
+    private void setDefualtCommand(DriveTrain driveTrain) {
+    }
+
+   }
