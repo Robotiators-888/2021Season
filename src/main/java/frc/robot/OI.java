@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.OI;
-import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**

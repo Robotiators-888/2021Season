@@ -8,14 +8,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Intake {
 
-    protected DoubleSolenoid intakeFlipper;
-    protected TalonSRX intakeMotor;
+   public DoubleSolenoid intakeFlipper;
+    public TalonSRX intakeMotor;
 
-    protected int multi;
-    protected OI oi;
+    public int multi;
+    public OI oi;
 
-    protected boolean flipButtonLast = false;
-    protected boolean flipButton = false;
+    public boolean flipButtonLast = false;
+    public boolean flipButton = false;
 
     private boolean isRunning = false;
 
@@ -31,7 +31,7 @@ public class Intake {
 
     public void intakeTeleopPeriodic() {
         if (oi.getLeftStickButton(Constants.JOYSTICK_TRIGGER)) {
-            if (oi.getLeftStickButton(intakeMotor.JOYSTICK_LEFT_BUTTON)){
+            if (oi.getLeftStickButton(intakeMotor.JOYSTICK_LEFT_BUTTON, 4)){
                 intakeReverse();
             }
             else {
