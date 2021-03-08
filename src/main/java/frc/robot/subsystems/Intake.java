@@ -83,7 +83,7 @@ public class Intake {
             intakeFlipper.set(DoubleSolenoid.Value.kForward);
     }
 
-    public void flipUp() {
+    public static void flipUp() {
         if (intakeFlipper.get().equals(DoubleSolenoid.Value.kForward))
             intakeFlipper.set(DoubleSolenoid.Value.kReverse);
     }
